@@ -18,14 +18,25 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  console.log(email);
+
   const handleEmail = (event) => {
     const value = event.target.value;
     setEmail(value);
+    console.log(value);
   };
-
   const handlePassword = (event) => {
     const value = event.target.value;
     setPassword(value);
+  };
+
+  let values = {
+    email,
+    password,
+  };
+  const handleSubmit = () => {
+    console.log("submit");
+    login(values);
   };
 
   return (
@@ -55,7 +66,12 @@ export default function LoginForm() {
         </div>
 
         <div className="button">
-          <button>Login</button>
+          <button
+            onClick={handleSubmit}
+            disabled={!email || password.length < 6}
+          >
+            Login
+          </button>
         </div>
       </div>
     </div>
